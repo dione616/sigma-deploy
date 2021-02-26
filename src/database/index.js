@@ -40,6 +40,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectDatabase = void 0;
+require("dotenv").config();
 var mongoose_1 = __importDefault(require("mongoose"));
 var connectDatabase = function () { return __awaiter(void 0, void 0, void 0, function () {
     var connection;

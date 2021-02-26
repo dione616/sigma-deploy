@@ -10,8 +10,7 @@ var database_1 = require("./database");
 var register_1 = require("./routes/register");
 var login_1 = require("./routes/login");
 var express_session_1 = __importDefault(require("express-session"));
-var compression_1 = __importDefault(require("compression"));
-var PORT = process.env.PORT || 3002;
+var PORT = 3002;
 var app = express_1.default();
 var connect = database_1.connectDatabase();
 app.use(body_parser_1.default.urlencoded({ extended: true }));
@@ -27,13 +26,6 @@ app.use(express_session_1.default({
     saveUninitialized: false,
     cookie: { secure: false },
 }));
-app.use(compression_1.default);
-/* const publicPath = path.join(__dirname, "..", "public");
-app.use(express.static(publicPath));
-
-app.get("*", (req, res) => {
-  res.sendFile(path.join(publicPath, "index.html"));
-}); */
 if (process.env.NODE_ENV === "production") {
     app.use(express_1.default.static(__dirname + "/client"));
 }
@@ -44,7 +36,6 @@ app.get("*", function (req, res) {
 app.get("/", function (req, res) {
     return res.status(200).send("<h1>Hello World!</h1>");
 });
-/* app.get(loginRoute); */
 app.use(register_1.register);
 app.use(login_1.login);
 app.listen(PORT, function () {
