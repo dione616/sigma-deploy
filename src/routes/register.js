@@ -62,15 +62,13 @@ exports.register.post("/register", function (req, res) { return __awaiter(void 0
                 repeat_password = req.body.repeat_password.trim();
                 if (!(firstname && lastname && email && password && repeat_password)) return [3 /*break*/, 4];
                 return [4 /*yield*/, UserSchema_1.User.findOne({ email: email }).catch(function (err) {
-                        res
-                            .status(401)
-                            .send({ success: false, error: "Something wrong with DB" });
+                        res.send({ success: false, error: "Something wrong with DB" });
                     })];
             case 1:
                 user = _a.sent();
                 if (!user) return [3 /*break*/, 2];
                 if (user.email === email) {
-                    res.status(401).send({ success: false, error: "Email exists" });
+                    res.send({ success: false, error: "Email exists" });
                 }
                 return [3 /*break*/, 4];
             case 2:
